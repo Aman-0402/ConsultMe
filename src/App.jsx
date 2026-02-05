@@ -1,13 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import "./App.css";
 
-// Import layout components (always loaded)
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 
-// Lazy load pages (loaded only when needed)
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
 const Services = lazy(() => import("./pages/Services"));
@@ -17,7 +15,6 @@ const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Experts = lazy(() => import("./pages/Experts"));
 
-// Loading component
 function Loading() {
   return (
     <div
@@ -37,8 +34,9 @@ function Loading() {
 
 function App() {
   return (
-    <Router>
+    <>
       <ScrollToTop />
+
       <div className="App">
         <Navbar />
 
@@ -52,6 +50,8 @@ function App() {
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/contact" element={<Contact />} />
+
+              {/* Catch all */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
@@ -59,7 +59,7 @@ function App() {
 
         <Footer />
       </div>
-    </Router>
+    </>
   );
 }
 
