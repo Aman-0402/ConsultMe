@@ -1,0 +1,38 @@
+.service-card-component {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+  }
+  
+  .service-card-component:hover {
+    transform: scale(1.05);
+  }
+  
+  .service-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .service-card-component h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .service-card-component p {
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+  
+  .service-link {
+    color: white;
+    font-weight: 600;
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  
+  .service-link:hover {
+    transform: translateX(5px);
+  }
