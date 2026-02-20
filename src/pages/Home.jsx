@@ -21,15 +21,15 @@ function Home() {
     if (window.innerWidth <= 768) {
       el.innerHTML = `
         Connect with verified experts across business, technology, finance, and legal.
-        <span class="brand-gradient">ConsultME</span> helps you make
-        <span class="rotate-word"></span> decisions, execute smarter, and achieve
-        measurable growth — all in one powerful consulting ecosystem.
+        <br />
+        <span class="brand-gradient">ConsultME</span> provides a powerful ecosystem to scale your business
+        <span class="rotate-word"></span>
       `;
       return;
     }
 
     const sentence =
-      "Connect with verified experts across business, technology, finance, and legal. ConsultME helps you make decisions, execute smarter, and achieve measurable growth — all in one powerful consulting ecosystem.";
+      "Connect with verified experts across business, technology, finance, and legal. ConsultME provides a powerful ecosystem to scale your business ";
 
     const words = sentence.split(" ");
     let index = 0;
@@ -40,15 +40,53 @@ function Home() {
       if (index < words.length) {
         el.textContent += words[index] + " ";
         index++;
-        setTimeout(typeWord, 220);
+        setTimeout(typeWord, 180);
       } else {
         el.innerHTML = `
           Connect with verified experts across business, technology, finance, and legal.
-          <span class="brand-gradient">ConsultME</span> helps you make
-          <span class="rotate-word"></span> decisions, execute smarter, and achieve
-          measurable growth — all in one powerful consulting ecosystem.
+          <br />
+          <span class="brand-gradient">ConsultME</span> provides a powerful ecosystem to scale your business
+          <span id="rotating-word" class="rotate-word"></span>
         `;
+        startRotation();
       }
+    }
+
+    function startRotation() {
+      const rotateEl = document.getElementById("rotating-word");
+      if (!rotateEl) return;
+
+      const wordsToRotate = ["faster", "smarter", "better"];
+      let wordIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+
+      function type() {
+        const currentWord = wordsToRotate[wordIndex];
+
+        if (isDeleting) {
+          rotateEl.textContent = currentWord.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          rotateEl.textContent = currentWord.substring(0, charIndex + 1);
+          charIndex++;
+        }
+
+        let typeSpeed = isDeleting ? 100 : 200;
+
+        if (!isDeleting && charIndex === currentWord.length) {
+          isDeleting = true;
+          typeSpeed = 1500; // Pause at the end
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          wordIndex = (wordIndex + 1) % wordsToRotate.length;
+          typeSpeed = 500; // Pause before next word
+        }
+
+        setTimeout(type, typeSpeed);
+      }
+
+      type();
     }
 
     typeWord();
@@ -56,8 +94,16 @@ function Home() {
 
   return (
     <div className="home">
+
       {/* Hero Section */}
       <section className="hero">
+        <div className="bg-particles"></div>
+        <div className="hero-bg-elements">
+          <div className="blob blob-1"></div>
+          <div className="blob blob-2"></div>
+          <div className="blob blob-3"></div>
+          <div className="grid-overlay"></div>
+        </div>
         <div className="hero-content">
           <h1 className="hero-title">
             <span className="hero-title-line">Transform Your Business</span>
@@ -82,12 +128,22 @@ function Home() {
             <span className="badge-dot"></span>
           </div>
           <div className="hero-buttons">
-            <Link to="/contact" className="hero-btn gradient-button primary">
+            <Link to="/contact" className="hero-btn premium-button">
+              <span className="glass-shine"></span>
               <span className="gradient-text">Get Started</span>
+              <svg className="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
             </Link>
 
-            <Link to="/experts" className="hero-btn gradient-button primary">
+            <Link to="/experts" className="hero-btn premium-button">
+              <span className="glass-shine"></span>
               <span className="gradient-text">Explore Experts</span>
+              <svg className="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
             </Link>
           </div>
         </div>
@@ -95,8 +151,9 @@ function Home() {
 
       {/* Features Section */}
       <section className="services">
+        <div className="bg-particles"></div>
         <div className="container">
-          <h2 className="section-title fade-in-up text-center">Our Services</h2>
+          <span className="section-eyebrow fade-in-up text-center">Our Services</span>
           <h1 className="section-heading fade-in-up delay-1 text-center">
             Empowering You With Expert Guidance
           </h1>
@@ -193,6 +250,7 @@ function Home() {
       </section>
 
       <section className="services-preview">
+        <div className="bg-particles"></div>
         <div className="container">
           {/* Section Header */}
           <span className="section-eyebrow fade-in-up">Our Solutions</span>
@@ -332,72 +390,76 @@ function Home() {
 
 
       <section className="why-experts">
-  <div className="container">
-  <h2 className="section-title">
-      Why Choose Experts
-    </h2>
+        <div className="bg-particles"></div>
+        <div className="container">
+          <h2 className="section-title">
+            Why Choose Experts
+          </h2>
 
-    <p className="section-subtitle fade-in-up delay-1">
-      Why should you hire experts? Because informed decisions lead to better outcomes.
-    </p>
+          <p className="section-subtitle fade-in-up delay-1">
+            Why should you hire experts? Because informed decisions lead to better outcomes.
+          </p>
 
-    <div className="features-grid">
-      <div className="feature-card fade-in-up delay-2">
-        <h4>Personalized Solutions</h4>
-        <p>
-          Receive tailored strategies that fit your specific goals, industry,
-          and long-term vision.
-        </p>
-      </div>
+          <div className="features-grid">
+            <div className="feature-card fade-in-up delay-2">
+              <h4>Personalized Solutions</h4>
+              <p>
+                Receive tailored strategies that fit your specific goals, industry,
+                and long-term vision.
+              </p>
+            </div>
 
-      <div className="feature-card fade-in-up delay-3">
-        <h4>Networking Opportunity</h4>
-        <p>
-          Connect with industry leaders, professionals, and investors to expand
-          your network and unlock new opportunities.
-        </p>
-      </div>
+            <div className="feature-card fade-in-up delay-3">
+              <h4>Networking Opportunity</h4>
+              <p>
+                Connect with industry leaders, professionals, and investors to expand
+                your network and unlock new opportunities.
+              </p>
+            </div>
 
-      <div className="feature-card fade-in-up delay-4">
-        <h4>Expert Consultation</h4>
-        <p>
-          Gain deep insights and clarity from top domain experts in every session.
-        </p>
-      </div>
-    </div>
+            <div className="feature-card fade-in-up delay-4">
+              <h4>Expert Consultation</h4>
+              <p>
+                Gain deep insights and clarity from top domain experts in every session.
+              </p>
+            </div>
+          </div>
 
-    <div className="section-cta fade-in-up delay-5">
-      <a href="/services" className="services-btn">
-        Explore All Services
-      </a>
-    </div>
-  </div>
-</section>
+          <div className="section-cta fade-in-up delay-5">
+            <a href="/services" className="uiverse-btn type1">
+              {/* Text handled by CSS pseudo-elements */}
+            </a>
+          </div>
+        </div>
+      </section>
 
 
-<section className="final-cta">
-  <div className="container fade-in-up">
-    <h2 className="section-title">
-      Need Consulting Services?
-    </h2>
+      <section className="final-cta">
+        <div className="bg-particles"></div>
+        <div className="container fade-in-up">
+          <h2 className="section-title">
+            Need Consulting Services?
+          </h2>
 
-    <p className="section-subtitle">
-      Get instant access to verified experts across industries.
-      Your consultation starts without delay — reliable, focused,
-      and tailored to your needs.
-    </p>
+          <p className="section-subtitle">
+            Get instant access to verified experts across industries.
+            Your consultation starts without delay — reliable, focused,
+            and tailored to your needs.
+          </p>
 
-    <div className="cta-actions">
-      <a href="/register" className="primary-btn">
-        Register
-      </a>
+          <div className="cta-actions">
+            <a href="/register" className="premium-button">
+              <span className="glass-shine"></span>
+              <span className="gradient-text">Register</span>
+            </a>
 
-      <a href="/contact" className="secondary-btn">
-        Contact Us
-      </a>
-    </div>
-  </div>
-</section>
+            <a href="/contact" className="premium-button">
+              <span className="glass-shine"></span>
+              <span className="gradient-text">Contact Us</span>
+            </a>
+          </div>
+        </div>
+      </section>
 
 
     </div>

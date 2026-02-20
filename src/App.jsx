@@ -14,6 +14,8 @@ const Blog = lazy(() => import("./pages/Blog"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Experts = lazy(() => import("./pages/Experts"));
+const Login = lazy(() => import("./pages/Login"));
+const Signup = lazy(() => import("./pages/Signup"));
 
 function Loading() {
   return (
@@ -32,10 +34,13 @@ function Loading() {
   );
 }
 
+import Background from "./components/Background";
+
 function App() {
   return (
     <>
       <ScrollToTop />
+      <Background />
 
       <div className="App">
         <Navbar />
@@ -50,6 +55,8 @@ function App() {
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
 
               {/* Catch all */}
               <Route path="*" element={<NotFound />} />

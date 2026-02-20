@@ -73,7 +73,7 @@ function Contact() {
       // Form is valid - in a real app, you'd send this to a backend
       console.log('Form submitted:', formData)
       setSubmitStatus('success')
-      
+
       // Reset form after 3 seconds
       setTimeout(() => {
         setFormData({
@@ -152,7 +152,7 @@ function Contact() {
             {/* Contact Form */}
             <div className="contact-form-wrapper">
               <h2>Send Us a Message</h2>
-              
+
               {submitStatus === 'success' && (
                 <div className="alert alert-success">
                   ✓ Thank you! Your message has been sent successfully. We'll get back to you soon.

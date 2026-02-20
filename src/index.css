@@ -5,11 +5,28 @@
   box-sizing: border-box;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+html,
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+  width: 100%;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
   line-height: 1.6;
   color: #333;
-  background-color: #f8f9fa;
+  background-color: #0b0d14;
 }
 
 html {
@@ -21,7 +38,8 @@ a {
   color: inherit;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -31,6 +49,7 @@ ul, ol {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -41,6 +60,7 @@ ul, ol {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -56,7 +76,115 @@ ul, ol {
 }
 
 /* Stagger animation delays */
-.delay-1 { animation-delay: 0.1s; opacity: 0; }
-.delay-2 { animation-delay: 0.2s; opacity: 0; }
-.delay-3 { animation-delay: 0.3s; opacity: 0; }
-.delay-4 { animation-delay: 0.4s; opacity: 0; }
+.delay-1 {
+  animation-delay: 0.1s;
+  opacity: 0;
+}
+
+.delay-2 {
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+.delay-4 {
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+@keyframes rotate-gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Premium Button System */
+.premium-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 28px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: white;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 999px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.premium-button:hover {
+  transform: translateY(-3px);
+}
+
+.premium-button:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* Inner Background */
+.premium-button::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: #0b0d14;
+  border-radius: inherit;
+  z-index: -1;
+  transition: background 0.3s ease;
+}
+
+.premium-button:hover::after {
+  background: #11131c;
+}
+
+/* Rotating Outline Gradient */
+.premium-button::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #38bdf8, #6366f1);
+  background-size: 300% 100%;
+  z-index: -2;
+  filter: blur(8px);
+  opacity: 0.6;
+  animation: rotate-gradient 4s linear infinite;
+  transition: opacity 0.3s ease;
+}
+
+.premium-button:hover::before {
+  opacity: 1;
+  filter: blur(12px);
+}
+
+/* Glass Shine Effect */
+.premium-button .glass-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transform: skewX(-25deg);
+  transition: 0.6s;
+}
+
+.premium-button:hover .glass-shine {
+  left: 140%;
+}
+
+/* Gradient Text */
+.premium-button .gradient-text {
+  background: linear-gradient(90deg, #ffffff, #e2e8f0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}

@@ -3,7 +3,7 @@ import './ServiceCard.css'
 
 function ServiceCard({ icon, title, description, link, linkText }) {
   return (
-    <div className="service-card-component">
+    <div className="service-card">
       {icon && <div className="service-icon">{icon}</div>}
       <h3>{title}</h3>
       <p>{description}</p>

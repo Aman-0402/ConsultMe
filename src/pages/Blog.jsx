@@ -120,9 +120,9 @@ function Blog() {
           <h2>Stay Updated</h2>
           <p>Subscribe to our newsletter for the latest insights and updates</p>
           <form className="newsletter-form">
-            <input 
-              type="email" 
-              placeholder="Enter your email address" 
+            <input
+              type="email"
+              placeholder="Enter your email address"
               className="newsletter-input"
             />
             <button type="submit" className="btn btn-primary">Subscribe</button>
